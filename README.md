@@ -8,6 +8,10 @@ Tools > Options > Miscellaneous > No Newline Resolver
 
 - `Enabled`: Checked by default
 
+### Downloads
+
+- https://github.com/junichi11/netbeans-nonewline-resolver/releases
+
 ### License
 
 Apache 2.0
