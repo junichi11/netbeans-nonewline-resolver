@@ -51,7 +51,7 @@ public class NoNewlineResolverOnSaveTask implements OnSaveTask {
         return true;
     }
 
-    @MimeRegistration(mimeType = "", service = OnSaveTask.Factory.class, position = Integer.MAX_VALUE)
+    @MimeRegistration(mimeType = "", service = OnSaveTask.Factory.class, position = Integer.MAX_VALUE - 1)
     public static final class FactoryImpl implements Factory {
 
         @Override
