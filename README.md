@@ -7,6 +7,8 @@ This plugin adds a newline to EOF on save if it doesn't exist.
 Tools > Options > Miscellaneous > No Newline Resolver
 
 - `Enabled`: Checked by default
+    * `Add a newline to EOF if it doesn't exist` : Checked by default
+    * `Leave one newline if there are over two newlines before EOF`
 
 ### Downloads
 
