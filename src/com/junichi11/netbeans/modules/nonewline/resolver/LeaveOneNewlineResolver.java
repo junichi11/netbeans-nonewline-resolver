@@ -22,14 +22,16 @@ import javax.swing.text.Document;
 import org.netbeans.editor.BaseDocument;
 
 /**
+ * Leave one newline if there are over two newlines before EOF.
  *
  * @author junichi11
  */
-class NoNewlineResolverImpl implements NoNewlineResolver {
+class LeaveOneNewlineResolver implements Resolver {
 
     private final Document document;
+    private static final Logger LOGGER = Logger.getLogger(LeaveOneNewlineResolver.class.getName());
 
-    public NoNewlineResolverImpl(Document document) {
+    public LeaveOneNewlineResolver(Document document) {
         this.document = document;
     }
 
@@ -44,19 +46,19 @@ class NoNewlineResolverImpl implements NoNewlineResolver {
             return;
         }
 
-        int lsLength = ls.length();
-        int documentLength = document.getLength();
         try {
-            if (documentLength == 0) {
-                document.insertString(documentLength, ls, null);
-            } else if (documentLength >= lsLength) {
-                String lastText = document.getText(documentLength - lsLength, lsLength);
-                if (!ls.equals(lastText)) {
-                    document.insertString(documentLength, ls, null);
-                }
+            final String originalText = document.getText(0, document.getLength());
+            String text = document.getText(0, document.getLength());
+            while (text.endsWith(ls)) {
+                text = text.substring(0, text.length() - ls.length());
+            }
+            text += ls;
+            if (originalText.length() > text.length()) {
+                document.remove(text.length(), originalText.length() - text.length());
             }
         } catch (BadLocationException ex) {
-            Logger.getLogger(NoNewlineResolverImpl.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.WARNING, null, ex);
         }
     }
+
 }

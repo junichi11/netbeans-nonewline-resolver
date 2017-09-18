@@ -36,29 +36,69 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         enabledCheckBox = new javax.swing.JCheckBox();
+        addNewlineCheckBox = new javax.swing.JCheckBox();
+        leaveOneNewlineCheckBox = new javax.swing.JCheckBox();
 
         org.openide.awt.Mnemonics.setLocalizedText(enabledCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.enabledCheckBox.text")); // NOI18N
+        enabledCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enabledCheckBoxActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(addNewlineCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.addNewlineCheckBox.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(leaveOneNewlineCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.leaveOneNewlineCheckBox.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(enabledCheckBox)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enabledCheckBox)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addNewlineCheckBox)
+                            .addComponent(leaveOneNewlineCheckBox))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(enabledCheckBox)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(enabledCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addNewlineCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(leaveOneNewlineCheckBox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enabledCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enabledCheckBoxActionPerformed
+        setComponentsEnabled();
+    }//GEN-LAST:event_enabledCheckBoxActionPerformed
+
+    private void setComponentsEnabled() {
+        boolean isEnabled = enabledCheckBox.isSelected();
+        addNewlineCheckBox.setEnabled(isEnabled);
+        leaveOneNewlineCheckBox.setEnabled(isEnabled);
+    }
 
     void load() {
         NoNewlineResolverOptions options = NoNewlineResolverOptions.getInstance();
         enabledCheckBox.setSelected(options.isEnabled());
+        addNewlineCheckBox.setSelected(options.addNewline());
+        leaveOneNewlineCheckBox.setSelected(options.leaveOneNewline());
+        setComponentsEnabled();
     }
 
     void store() {
         NoNewlineResolverOptions options = NoNewlineResolverOptions.getInstance();
         options.setEnabled(enabledCheckBox.isSelected());
+        options.setAddNewLine(addNewlineCheckBox.isSelected());
+        options.setLeaveOneNewline(leaveOneNewlineCheckBox.isSelected());
     }
 
     boolean valid() {
@@ -67,6 +107,8 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox addNewlineCheckBox;
     private javax.swing.JCheckBox enabledCheckBox;
+    private javax.swing.JCheckBox leaveOneNewlineCheckBox;
     // End of variables declaration//GEN-END:variables
 }

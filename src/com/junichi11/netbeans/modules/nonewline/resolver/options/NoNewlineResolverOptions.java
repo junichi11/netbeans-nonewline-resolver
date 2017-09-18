@@ -26,6 +26,8 @@ public final class NoNewlineResolverOptions {
 
     private static final String NO_NEWLINE_RESOLVER = "no.newline.resolver"; // NOI18N
     private static final String ENABLED = "enabled"; // NOI18N
+    private static final String ADD_NEWLINE = "add.newline"; // NOI18N
+    private static final String LEAVE_ONE_NEWLINE = "leave.one.newline"; // NOI18N
 
     private static final NoNewlineResolverOptions INSTANCE = new NoNewlineResolverOptions();
 
@@ -42,6 +44,22 @@ public final class NoNewlineResolverOptions {
 
     public boolean isEnabled() {
         return getPreferences().getBoolean(ENABLED, true);
+    }
+
+    public void setAddNewLine(boolean add) {
+        getPreferences().putBoolean(ADD_NEWLINE, add);
+    }
+
+    public boolean addNewline() {
+        return getPreferences().getBoolean(ADD_NEWLINE, true);
+    }
+
+    public void setLeaveOneNewline(boolean remove) {
+        getPreferences().putBoolean(LEAVE_ONE_NEWLINE, remove);
+    }
+
+    public boolean leaveOneNewline() {
+        return getPreferences().getBoolean(LEAVE_ONE_NEWLINE, false);
     }
 
     private Preferences getPreferences() {

@@ -15,6 +15,7 @@
  */
 package com.junichi11.netbeans.modules.nonewline.resolver;
 
+import com.junichi11.netbeans.modules.nonewline.resolver.ResolverFactory.Type;
 import javax.swing.text.BadLocationException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -77,10 +78,50 @@ public class NoNewlineResolverTest {
         testResolve("test" + LF, "test" + LF);
     }
 
+    // LeaveOneNewlineResolver
+    @Test
+    public void testResolveLastMultipleNewlines_01() throws BadLocationException {
+        testResolve("test", "test", Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_02() throws BadLocationException {
+        testResolve("test" + LF, "test" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_03() throws BadLocationException {
+        testResolve("test" + LF + LF, "test" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_04() throws BadLocationException {
+        testResolve("", "", Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_05() throws BadLocationException {
+        testResolve("" + LF, "" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_06() throws BadLocationException {
+        testResolve("" + LF + LF, "" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_07() throws BadLocationException {
+        testResolve("" + LF + LF + LF, "" + LF, Type.LeaveOneNewline);
+    }
+
     private void testResolve(String text, String expectedResult) throws BadLocationException {
+        testResolve(text, expectedResult, Type.AddNewline);
+    }
+
+    private void testResolve(String text, String expectedResult, Type type) throws BadLocationException {
         BaseDocument document = new BaseDocument(false, "text/plain");
         document.insertString(0, text, null);
-        NoNewlineResolver instance = NoNewlineResolver.create(document);
+        Resolver instance = ResolverFactory.createResolver(document, type);
         instance.resolve();
         assertEquals(expectedResult, document.getText(0, document.getLength()));
     }

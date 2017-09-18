@@ -15,18 +15,48 @@
  */
 package com.junichi11.netbeans.modules.nonewline.resolver;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import org.netbeans.editor.BaseDocument;
 
 /**
  *
  * @author junichi11
  */
-public interface NoNewlineResolver {
+class NoNewlineResolver implements Resolver {
 
-    void resolve();
+    private final Document document;
 
-    public static NoNewlineResolver create(Document document) {
-        return new NoNewlineResolverImpl(document);
+    public NoNewlineResolver(Document document) {
+        this.document = document;
     }
 
+    @Override
+    public void resolve() {
+        if (document == null) {
+            return;
+        }
+
+        String ls = (String) document.getProperty(BaseDocument.READ_LINE_SEPARATOR_PROP);
+        if (ls == null || ls.isEmpty()) {
+            return;
+        }
+
+        int lsLength = ls.length();
+        int documentLength = document.getLength();
+        try {
+            if (documentLength == 0) {
+                document.insertString(documentLength, ls, null);
+            } else if (documentLength >= lsLength) {
+                String lastText = document.getText(documentLength - lsLength, lsLength);
+                if (!ls.equals(lastText)) {
+                    document.insertString(documentLength, ls, null);
+                }
+            }
+        } catch (BadLocationException ex) {
+            Logger.getLogger(NoNewlineResolver.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

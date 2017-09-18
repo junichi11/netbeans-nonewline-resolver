@@ -15,11 +15,13 @@
  */
 package com.junichi11.netbeans.modules.nonewline.resolver.onsave;
 
-import com.junichi11.netbeans.modules.nonewline.resolver.NoNewlineResolver;
+import com.junichi11.netbeans.modules.nonewline.resolver.ResolverFactory;
 import com.junichi11.netbeans.modules.nonewline.resolver.options.NoNewlineResolverOptions;
+import java.util.List;
 import javax.swing.text.Document;
 import org.netbeans.api.editor.mimelookup.MimeRegistration;
 import org.netbeans.spi.editor.document.OnSaveTask;
+import com.junichi11.netbeans.modules.nonewline.resolver.Resolver;
 
 /**
  *
@@ -37,7 +39,8 @@ public class NoNewlineResolverOnSaveTask implements OnSaveTask {
     public void performTask() {
         if (NoNewlineResolverOptions.getInstance().isEnabled()) {
             Document document = context.getDocument();
-            NoNewlineResolver.create(document).resolve();
+            List<Resolver> resolvers = ResolverFactory.createResolvers(document);
+            resolvers.forEach(resolver -> resolver.resolve());
         }
     }
 
