@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 ## NetBeans No Newline Resolver
 
 This plugin adds a newline to EOF on save if it doesn't exist.
