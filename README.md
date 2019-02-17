@@ -16,6 +16,10 @@ Tools > Options > Miscellaneous > No Newline Resolver
 
 - https://github.com/junichi11/netbeans-nonewline-resolver/releases
 
+### Donation
+
+<a href="https://www.patreon.com/junichi11"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="50"></a>
+
 ### License
 
 Apache 2.0
