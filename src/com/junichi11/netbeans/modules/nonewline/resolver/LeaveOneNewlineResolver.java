@@ -52,13 +52,30 @@ class LeaveOneNewlineResolver implements Resolver {
             while (text.endsWith(ls)) {
                 text = text.substring(0, text.length() - ls.length());
             }
-            text += ls;
+            // #1 "document" seems have "\n" always even if the line ending is "\r\n" or "\r"
+            while (text.endsWith(BaseDocument.LS_LF) || text.endsWith(BaseDocument.LS_CR)) {
+                text = text.substring(0, text.length() - 1); // 1: LS_LF.length() LS_CR.length()
+            }
+            String documentLS = getDocumentLS(originalText, ls);
+            text += documentLS;
             if (originalText.length() > text.length()) {
                 document.remove(text.length(), originalText.length() - text.length());
             }
         } catch (BadLocationException ex) {
             LOGGER.log(Level.WARNING, null, ex);
         }
+    }
+
+    private String getDocumentLS(String text, String defaultValue) {
+        String documentLS = defaultValue;
+        if (text.endsWith(BaseDocument.LS_CRLF)) {
+            documentLS = BaseDocument.LS_CRLF;
+        } else if (text.endsWith(BaseDocument.LS_LF)) {
+            documentLS = BaseDocument.LS_LF;
+        } else if (text.endsWith(BaseDocument.LS_CR)) {
+            documentLS = BaseDocument.LS_CR;
+        }
+        return documentLS;
     }
 
 }

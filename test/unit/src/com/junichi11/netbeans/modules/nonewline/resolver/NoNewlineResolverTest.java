@@ -64,8 +64,28 @@ public class NoNewlineResolverTest {
     }
 
     @Test
+    public void testResolveNoNewline_01_crlf() throws BadLocationException {
+        testResolve("test", "test" + LF, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveNoNewline_01_cr() throws BadLocationException {
+        testResolve("test", "test" + LF, BaseDocument.LS_CR);
+    }
+
+    @Test
     public void testResolveNoNewline_02() throws BadLocationException {
         testResolve(LF + "test", LF + "test" + LF);
+    }
+
+    @Test
+    public void testResolveNoNewline_02_crlf() throws BadLocationException {
+        testResolve(LF + "test", LF + "test" + LF, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveNoNewline_02_cr() throws BadLocationException {
+        testResolve(LF + "test", LF + "test" + LF, BaseDocument.LS_CR);
     }
 
     @Test
@@ -74,8 +94,28 @@ public class NoNewlineResolverTest {
     }
 
     @Test
+    public void testResolveHasNewline_01_crlf() throws BadLocationException {
+        testResolve(LF, LF, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveHasNewline_01_cr() throws BadLocationException {
+        testResolve(LF, LF, BaseDocument.LS_CR);
+    }
+
+    @Test
     public void testResolveHasNewline_02() throws BadLocationException {
         testResolve("test" + LF, "test" + LF);
+    }
+
+    @Test
+    public void testResolveHasNewline_02_crlf() throws BadLocationException {
+        testResolve("test" + LF, "test" + LF, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveHasNewline_02_cr() throws BadLocationException {
+        testResolve("test" + LF, "test" + LF, BaseDocument.LS_CR);
     }
 
     // LeaveOneNewlineResolver
@@ -85,8 +125,28 @@ public class NoNewlineResolverTest {
     }
 
     @Test
+    public void testResolveLastMultipleNewlines_01_crlf() throws BadLocationException {
+        testResolve("test", "test", Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_01_cr() throws BadLocationException {
+        testResolve("test", "test", Type.LeaveOneNewline, BaseDocument.LS_CR);
+    }
+
+    @Test
     public void testResolveLastMultipleNewlines_02() throws BadLocationException {
         testResolve("test" + LF, "test" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_02_crlf() throws BadLocationException {
+        testResolve("test" + LF, "test" + LF, Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_02_cr() throws BadLocationException {
+        testResolve("test" + LF, "test" + LF, Type.LeaveOneNewline, BaseDocument.LS_CR);
     }
 
     @Test
@@ -95,8 +155,28 @@ public class NoNewlineResolverTest {
     }
 
     @Test
+    public void testResolveLastMultipleNewlines_03_crlf() throws BadLocationException {
+        testResolve("test" + LF + LF, "test" + LF, Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_03_cr() throws BadLocationException {
+        testResolve("test" + LF + LF, "test" + LF, Type.LeaveOneNewline, BaseDocument.LS_CR);
+    }
+
+    @Test
     public void testResolveLastMultipleNewlines_04() throws BadLocationException {
         testResolve("", "", Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_04_crlf() throws BadLocationException {
+        testResolve("", "", Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_04_cr() throws BadLocationException {
+        testResolve("", "", Type.LeaveOneNewline, BaseDocument.LS_CR);
     }
 
     @Test
@@ -105,8 +185,28 @@ public class NoNewlineResolverTest {
     }
 
     @Test
+    public void testResolveLastMultipleNewlines_05_crlf() throws BadLocationException {
+        testResolve("" + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_05_cr() throws BadLocationException {
+        testResolve("" + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CR);
+    }
+
+    @Test
     public void testResolveLastMultipleNewlines_06() throws BadLocationException {
         testResolve("" + LF + LF, "" + LF, Type.LeaveOneNewline);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_06_crlf() throws BadLocationException {
+        testResolve("" + LF + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_06_cr() throws BadLocationException {
+        testResolve("" + LF + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CR);
     }
 
     @Test
@@ -114,12 +214,31 @@ public class NoNewlineResolverTest {
         testResolve("" + LF + LF + LF, "" + LF, Type.LeaveOneNewline);
     }
 
+    @Test
+    public void testResolveLastMultipleNewlines_07_crlf() throws BadLocationException {
+        testResolve("" + LF + LF + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CRLF);
+    }
+
+    @Test
+    public void testResolveLastMultipleNewlines_07_cr() throws BadLocationException {
+        testResolve("" + LF + LF + LF, "" + LF, Type.LeaveOneNewline, BaseDocument.LS_CR);
+    }
+
     private void testResolve(String text, String expectedResult) throws BadLocationException {
         testResolve(text, expectedResult, Type.AddNewline);
     }
 
+    private void testResolve(String text, String expectedResult, String ls) throws BadLocationException {
+        testResolve(text, expectedResult, Type.AddNewline, ls);
+    }
+
     private void testResolve(String text, String expectedResult, Type type) throws BadLocationException {
+        testResolve(text, expectedResult, type, BaseDocument.LS_LF);
+    }
+
+    private void testResolve(String text, String expectedResult, Type type, String ls) throws BadLocationException {
         BaseDocument document = new BaseDocument(false, "text/plain");
+        document.putProperty(BaseDocument.READ_LINE_SEPARATOR_PROP, ls);
         document.insertString(0, text, null);
         Resolver instance = ResolverFactory.createResolver(document, type);
         instance.resolve();
