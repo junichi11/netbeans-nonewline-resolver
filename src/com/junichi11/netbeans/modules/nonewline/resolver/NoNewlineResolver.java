@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import org.netbeans.editor.BaseDocument;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -51,7 +52,9 @@ class NoNewlineResolver implements Resolver {
                 document.insertString(documentLength, ls, null);
             } else if (documentLength >= lsLength) {
                 String lastText = document.getText(documentLength - lsLength, lsLength);
-                if (!ls.equals(lastText)) {
+                if (!ls.equals(lastText)
+                        && !lastText.endsWith(BaseDocument.LS_LF) // #1 document seems have "\n" always even if the line ending is "\r\n" or "\r"
+                        && !lastText.endsWith(BaseDocument.LS_CR)) {
                     document.insertString(documentLength, ls, null);
                 }
             }
