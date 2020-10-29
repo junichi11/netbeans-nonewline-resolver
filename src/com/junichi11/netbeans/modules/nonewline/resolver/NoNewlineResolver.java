@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import org.netbeans.editor.BaseDocument;
-import org.openide.util.Exceptions;
 
 /**
  *
