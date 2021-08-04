@@ -17,6 +17,7 @@ package com.junichi11.netbeans.modules.nonewline.resolver;
 
 import com.junichi11.netbeans.modules.nonewline.resolver.options.NoNewlineResolverOptions;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.text.Document;
 
@@ -59,6 +60,10 @@ public final class ResolverFactory {
      */
     public static List<Resolver> createResolvers(Document document) {
         ArrayList<Resolver> resolvers = new ArrayList<>();
+        if (document.getLength() == 0
+                && NoNewlineResolverOptions.getInstance().doNotAddNewlineInEmptyFiles()) {
+            return Collections.emptyList();
+        }
         if (NoNewlineResolverOptions.getInstance().addNewline()) {
             resolvers.add(new NoNewlineResolver(document));
         }

@@ -24,6 +24,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="addNewlineCheckBox" min="-2" max="-2" attributes="0"/>
                           <Component id="leaveOneNewlineCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="doNotAddNewlineInEmptyFilesCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -39,6 +40,8 @@
               <Component id="addNewlineCheckBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="leaveOneNewlineCheckBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="doNotAddNewlineInEmptyFilesCheckBox" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -66,6 +69,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="com/junichi11/netbeans/modules/nonewline/resolver/options/Bundle.properties" key="NoNewlineResolverOptionsPanel.leaveOneNewlineCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="doNotAddNewlineInEmptyFilesCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="com/junichi11/netbeans/modules/nonewline/resolver/options/Bundle.properties" key="NoNewlineResolverOptionsPanel.doNotAddNewlineInEmptyFilesCheckBox.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

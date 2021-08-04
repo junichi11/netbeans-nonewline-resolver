@@ -28,6 +28,7 @@ public final class NoNewlineResolverOptions {
     private static final String ENABLED = "enabled"; // NOI18N
     private static final String ADD_NEWLINE = "add.newline"; // NOI18N
     private static final String LEAVE_ONE_NEWLINE = "leave.one.newline"; // NOI18N
+    private static final String DO_NOT_ADD_NEWLINE_IN_EMPTY_FILES = "do.not.add.in.empty.files"; // NOI18N
 
     private static final NoNewlineResolverOptions INSTANCE = new NoNewlineResolverOptions();
 
@@ -60,6 +61,14 @@ public final class NoNewlineResolverOptions {
 
     public boolean leaveOneNewline() {
         return getPreferences().getBoolean(LEAVE_ONE_NEWLINE, false);
+    }
+
+    public void setDoNotAddNewLineInEmptyFiles(boolean doNotAdd) {
+        getPreferences().putBoolean(DO_NOT_ADD_NEWLINE_IN_EMPTY_FILES, doNotAdd);
+    }
+
+    public boolean doNotAddNewlineInEmptyFiles() {
+        return getPreferences().getBoolean(DO_NOT_ADD_NEWLINE_IN_EMPTY_FILES, false);
     }
 
     private Preferences getPreferences() {
