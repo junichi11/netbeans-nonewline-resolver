@@ -11,6 +11,7 @@ Tools > Options > Miscellaneous > No Newline Resolver
 - `Enabled`: Checked by default
     * `Add a newline to EOF if it doesn't exist` : Checked by default
     * `Leave one newline if there are over two newlines before EOF`
+    * `Don't add a newline in empty files`
 
 ### Downloads
 
@@ -25,7 +26,7 @@ Tools > Options > Miscellaneous > No Newline Resolver
 The Apache License, Version 2.0
 
 ```
-Copyright 2017 junichi11.
+Copyright 2021 junichi11.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
