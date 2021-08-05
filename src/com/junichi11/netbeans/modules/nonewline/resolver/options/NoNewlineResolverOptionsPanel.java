@@ -17,7 +17,7 @@ package com.junichi11.netbeans.modules.nonewline.resolver.options;
 
 final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
 
-    private static final long serialVersionUID = 9109931111485033945L;
+    private static final long serialVersionUID = 3526831216864169140L;
 
     private final NoNewlineResolverOptionsPanelController controller;
 
@@ -38,6 +38,7 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
         enabledCheckBox = new javax.swing.JCheckBox();
         addNewlineCheckBox = new javax.swing.JCheckBox();
         leaveOneNewlineCheckBox = new javax.swing.JCheckBox();
+        doNotAddNewlineInEmptyFilesCheckBox = new javax.swing.JCheckBox();
 
         org.openide.awt.Mnemonics.setLocalizedText(enabledCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.enabledCheckBox.text")); // NOI18N
         enabledCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -50,6 +51,8 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(leaveOneNewlineCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.leaveOneNewlineCheckBox.text")); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(doNotAddNewlineInEmptyFilesCheckBox, org.openide.util.NbBundle.getMessage(NoNewlineResolverOptionsPanel.class, "NoNewlineResolverOptionsPanel.doNotAddNewlineInEmptyFilesCheckBox.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,7 +64,8 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addNewlineCheckBox)
-                            .addComponent(leaveOneNewlineCheckBox))))
+                            .addComponent(leaveOneNewlineCheckBox)
+                            .addComponent(doNotAddNewlineInEmptyFilesCheckBox))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,6 +76,8 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
                 .addComponent(addNewlineCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(leaveOneNewlineCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(doNotAddNewlineInEmptyFilesCheckBox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +90,7 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
         boolean isEnabled = enabledCheckBox.isSelected();
         addNewlineCheckBox.setEnabled(isEnabled);
         leaveOneNewlineCheckBox.setEnabled(isEnabled);
+        doNotAddNewlineInEmptyFilesCheckBox.setEnabled(isEnabled);
     }
 
     void load() {
@@ -91,6 +98,7 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
         enabledCheckBox.setSelected(options.isEnabled());
         addNewlineCheckBox.setSelected(options.addNewline());
         leaveOneNewlineCheckBox.setSelected(options.leaveOneNewline());
+        doNotAddNewlineInEmptyFilesCheckBox.setSelected(options.doNotAddNewlineInEmptyFiles());
         setComponentsEnabled();
     }
 
@@ -99,6 +107,7 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
         options.setEnabled(enabledCheckBox.isSelected());
         options.setAddNewLine(addNewlineCheckBox.isSelected());
         options.setLeaveOneNewline(leaveOneNewlineCheckBox.isSelected());
+        options.setDoNotAddNewLineInEmptyFiles(doNotAddNewlineInEmptyFilesCheckBox.isSelected());
     }
 
     boolean valid() {
@@ -108,6 +117,7 @@ final class NoNewlineResolverOptionsPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox addNewlineCheckBox;
+    private javax.swing.JCheckBox doNotAddNewlineInEmptyFilesCheckBox;
     private javax.swing.JCheckBox enabledCheckBox;
     private javax.swing.JCheckBox leaveOneNewlineCheckBox;
     // End of variables declaration//GEN-END:variables
