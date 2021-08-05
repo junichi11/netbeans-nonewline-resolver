@@ -15,7 +15,8 @@ Tools > Options > Miscellaneous > No Newline Resolver
 
 ### Downloads
 
-- https://github.com/junichi11/netbeans-nonewline-resolver/releases
+- https://github.com/junichi11/netbeans-nonewline-resolver/releases (GitHub Releases)
+- https://plugins.netbeans.apache.org/catalogue/?id=33 (Plugin Portal)
 
 ### Donation
 
